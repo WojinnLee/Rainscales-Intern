@@ -1,6 +1,7 @@
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import render
 
 from .models import Book
 from .serializers import BookSerializer
@@ -41,3 +42,7 @@ class BookViewSet(viewsets.ModelViewSet):
         queryset = Book.objects.all().order_by("id")
         queryset = custom_filter_books(queryset, self.request)
         return queryset
+
+
+def home(request):
+    return render(request, "book/home.html")
