@@ -46,6 +46,17 @@ export function login(credentials) {
   });
 }
 
+export function logout(refresh, token) {
+  return request(
+    "/logout/",
+    {
+      method: "POST",
+      body: JSON.stringify({ refresh }),
+    },
+    token,
+  );
+}
+
 export function listBooks({ page, pageSize, title, author }, token) {
   const params = new URLSearchParams({
     page: String(page),
